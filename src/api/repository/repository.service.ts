@@ -10,8 +10,13 @@ export class Query<T> {
 }
 
 export class PrismaRepository extends PrismaClient {
+  // evoai: any;
+  // evoaiSetting: any;
+  // integrationSession: any;
+  // instance: any;
   constructor(private readonly configService: ConfigService) {
     super();
+    
   }
 
   private readonly logger = new Logger('PrismaRepository');

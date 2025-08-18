@@ -6,7 +6,7 @@ import { WAMonitoringService } from '@api/services/monitor.service';
 import { configService, Evoai } from '@config/env.config';
 import { Logger } from '@config/logger.config';
 import { BadRequestException } from '@exceptions';
-import { Evoai as EvoaiModel, IntegrationSession } from '@prisma/client';
+import { Evoai as EvoaiModel } from '@prisma/client';
 
 import { BaseChatbotController } from '../../base-chatbot.controller';
 
@@ -111,7 +111,7 @@ export class EvoaiController extends BaseChatbotController<EvoaiModel, EvoaiDto>
     instance: any,
     remoteJid: string,
     bot: EvoaiModel,
-    session: IntegrationSession,
+    session: any,
     settings: any,
     content: string,
     pushName?: string,
