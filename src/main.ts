@@ -147,12 +147,26 @@ async function bootstrap() {
     // but before any and other error-handling middlewares are defined
     Sentry.setupExpressErrorHandler(app);
   }
-
-  server.listen(httpServer.PORT, () => logger.log(httpServer.TYPE.toUpperCase() + ' - ON: ' + httpServer.PORT));
-
+ 
+  if (process.env.VERCEL) {
+  logger.log(httpServer.TYPE.toUpperCase() + ' - READY');
+} else {
+  server.listen(httpServer.PORT, () =>
+    logger.log(httpServer.TYPE.toUpperCase() + ' - ON: ' + httpServer.PORT)
+  );
+}
   initWA();
 
   onUnexpectedError();
+  return app;
+
 }
 
-bootstrap();
+let appPromise = bootstrap();
+
+export default async (req, res) => {
+  const app = await appPromise;  // ensure bootstrap finished
+  return app(req, res);
+};
+
+

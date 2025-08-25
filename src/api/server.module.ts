@@ -1,8 +1,7 @@
-import { CacheEngine } from '@cache/cacheengine';
 import { Chatwoot, configService, ProviderSession } from '@config/env.config';
 import { eventEmitter } from '@config/event.config';
 import { Logger } from '@config/logger.config';
-
+import { CacheEngine } from '../cache/cacheengine';
 import { BusinessController } from './controllers/business.controller';
 import { CallController } from './controllers/call.controller';
 import { ChatController } from './controllers/chat.controller';
@@ -46,6 +45,8 @@ import { SettingsService } from './services/settings.service';
 import { TemplateService } from './services/template.service';
 
 const logger = new Logger('WA MODULE');
+
+
 
 let chatwootCache: CacheService = null;
 if (configService.get<Chatwoot>('CHATWOOT').ENABLED) {
